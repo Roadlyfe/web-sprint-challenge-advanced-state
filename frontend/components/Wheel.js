@@ -1,6 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import * as actionCreators from '../state/action-creators'
 
-export default function Wheel(props) {
+export function Wheel(props) {
   return (
     <div id="wrapper">
       <div id="wheel">
@@ -18,3 +20,5 @@ export default function Wheel(props) {
     </div>
   )
 }
+
+export default connect(st => st, actionCreators)(Wheel)
