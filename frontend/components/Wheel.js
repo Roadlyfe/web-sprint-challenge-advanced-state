@@ -5,7 +5,7 @@ import * as creators from '../state/action-creators'
 
 
 export function Wheel(props) {
-  console.log(props)
+  
  
 
 

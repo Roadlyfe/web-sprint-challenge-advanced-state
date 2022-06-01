@@ -50,7 +50,7 @@ export function inputChange(name, value) {
 }
 
 export function resetForm() {
-  ({ type: types.RESET_FORM })
+ return ({ type: types.RESET_FORM })
 }
 
 // ❗ Async action creators
@@ -69,7 +69,6 @@ export function fetchQuiz() {
   }
 }
 export function postAnswer(addAnswer) {
-  console.log("add answer", addAnswer)
   return function (dispatch) {
     axios.post('http://localhost:9000/api/quiz/answer', addAnswer)
       .then(res => {
@@ -90,7 +89,8 @@ export function postQuiz(addQuestion) {
   return function (dispatch) {
     axios.post('http://localhost:9000/api/quiz/new', addQuestion)
       .then(res => {
-        dispatch(setMessage(res.data.message))
+        console.log("post quiz",res.data)
+        dispatch(setMessage(`Congrats: "${res.data.question}" is a great question!`))
         dispatch(resetForm())
       })
       .catch(err => {

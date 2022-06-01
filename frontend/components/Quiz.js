@@ -8,16 +8,12 @@ export function Quiz(props) {
 
   useEffect(() => {
     props.fetchQuiz()
-    console.log(fetchQuiz)
   },[])
 
-  const handleSelected = () => {
-    console.log("I am selected", props)
-  }
+
  
 
   const onSubmit = (e) => {
-    console.log("submitted!")
    e.preventDefault()
    props.postAnswer({quiz_id: props.quiz.quiz_id, answer_id: props.selectedAnswer})
   }
