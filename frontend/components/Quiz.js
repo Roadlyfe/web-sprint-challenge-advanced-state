@@ -14,12 +14,7 @@ export function Quiz(props) {
   const handleSelected = () => {
     console.log("I am selected", props)
   }
-
-  //this.props.selectedAnswer === this.props.quiz.answer_id ? "SELECTED : 'select"
-
-  const handleSelect = () => {
-    console.log("I am select", props)
-  }
+ 
 
   const onSubmit = () => {
    
@@ -29,27 +24,27 @@ export function Quiz(props) {
     <div id="wrapper">
       {
         // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
-        true ? (
+        props.quiz ? (
           <>
-            <h2>What is a closure?</h2>
+           <h2>{props.quiz.question}</h2>
 
             <div id="quizAnswers">
-              <div className="answer selected">
-                A function
-                <button onClick={handleSelected}>
-                  SELECTED
+              <div className={props.quiz.answers[0].answer_id === props.selectedAnswer ? "answer selected" : "answer"}>
+                {props.quiz.answers[0].text}
+                <button onClick={() => props.selectAnswer(props.quiz.answers[0].answer_id)}>
+                {props.quiz.answers[0].answer_id === props.selectedAnswer ? "SELECTED" : "Select"}
                 </button>
               </div>
 
-              <div className="answer">
-                An elephant
-                <button onClick={handleSelect}>
-                  Select
+              <div className={props.quiz.answers[1].answer_id === props.selectedAnswer ? "answer selected" : "answer"}>
+              {props.quiz.answers[1].text}  
+                <button onClick={() => props.selectAnswer(props.quiz.answers[1].answer_id)}>
+                {props.quiz.answers[1].answer_id === props.selectedAnswer ? "SELECTED" : "Select"}
                 </button>
               </div>
             </div>
 
-            <button id="submitAnswerBtn" onSubmit={onSubmit} >Submit answer</button>
+            <button type="submit" id="submitAnswerBtn" disabled={!props.selectedAnswer ? true : false } onSubmit={onSubmit} >Submit answer</button>
           </>
         ) : 'Loading next quiz...'
       }

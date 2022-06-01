@@ -17,13 +17,17 @@ export function moveCounterClockwise(amount) {
  }
 
 export function selectAnswer(initialSelectedAnswerState) {
-  return ({ type: types.SET_SELECTED_ANSWER,
-  payload: initialSelectedAnswerState})
+  return (dispatch) => {
+    dispatch({type: types.SET_SELECTED_ANSWER,
+    payload: initialSelectedAnswerState}) 
+  }
  }
 
 export function setMessage(initialMessageState) {
-  return ({ type: types.SET_INFO_MESSAGE, 
-  payload: initialMessageState})
+  return (dispatch) => {
+    dispatch({type: types.SET_INFO_MESSAGE,
+    payload: initialMessageState}) 
+  }
  }
 
 export function setQuiz(initialQuizState) {
