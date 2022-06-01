@@ -16,8 +16,10 @@ export function Quiz(props) {
   }
  
 
-  const onSubmit = () => {
-   
+  const onSubmit = (e) => {
+    console.log("submitted!")
+   e.preventDefault()
+   props.postAnswer({quiz_id: props.quiz.quiz_id, answer_id: props.selectedAnswer})
   }
 
   return (
@@ -44,7 +46,7 @@ export function Quiz(props) {
               </div>
             </div>
 
-            <button type="submit" id="submitAnswerBtn" disabled={!props.selectedAnswer ? true : false } onSubmit={onSubmit} >Submit answer</button>
+            <button id="submitAnswerBtn" disabled={!props.selectedAnswer ? true : false } onClick={onSubmit} >Submit answer</button>
           </>
         ) : 'Loading next quiz...'
       }

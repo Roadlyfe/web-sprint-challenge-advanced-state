@@ -24,11 +24,10 @@ export function selectAnswer(initialSelectedAnswerState) {
  }
 
 export function setMessage(initialMessageState) {
-  return (dispatch) => {
-    dispatch({type: types.SET_INFO_MESSAGE,
+    return ({type: types.SET_INFO_MESSAGE,
     payload: initialMessageState}) 
   }
- }
+ 
 
 export function setQuiz(initialQuizState) {
   return ({ type: types.SET_QUIZ_INTO_STATE,
@@ -60,9 +59,10 @@ export function fetchQuiz() {
     // - Dispatch an action to send the obtained quiz to its state
   }
 }
-export function postAnswer() {
+export function postAnswer(addAnswer) {
+  console.log("add answer", addAnswer)
   return function (dispatch) {
-    axios.post('http://localhost:9000/api/quiz/new', addAnswer)
+    axios.post('http://localhost:9000/api/quiz/answer', addAnswer)
     .then(res => {
       dispatch(selectAnswer(null))
       dispatch(setMessage(res.data.message))
